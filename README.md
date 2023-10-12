@@ -12,14 +12,14 @@ The Library is a simple project that allows users to upload and download novels.
 - Notifications
 
 Please note that the project is still in its early stages, and additional functionality will be added as development progresses.
-```tree
+```
 The-Library/
 ├── frontend/
 │   ├── # Frontend project files and directories
 ├── backend/
 │   ├── # Backend project files and directories
 ├── README.md
-
+```
 This repository has two main folders: 'frontend' and 'backend', in addition to this README file.
 
 ### Frontend
@@ -54,7 +54,7 @@ frontend/
 ├── .gitignore
 ├── package-lock.json
 ├── package.json
-
+```
 
 - **src**: Contains various 'pages' or components used in the frontend. These components are designed to handle specific functionalities.
 
@@ -92,7 +92,7 @@ backend/
 ├── db.sqlite3
 ├── manage.py
 ├── requirements.txt
-
+```
 
 - **Books**: Manages models, views, URLs, and serializers related to books/novels.
 
