@@ -6,6 +6,6 @@ urlpatterns = [
     path("register/", user_register, name="register"),
     
     path("profile/update", update_user_profile, name='profile-update'),
-    path("profile/<str:username>", get_user_profile, name="user-profile"),
+    path("profile/<str:username>/", get_user_profile, name="user-profile"),
     
 ]

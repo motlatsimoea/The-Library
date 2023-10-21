@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
 import Book from '../components/Book'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link, useParams } from 'react-router-dom'
 import { userprofile } from '../features/users/profile-slice'
 
 function ProfileScreen() {
@@ -13,6 +13,7 @@ function ProfileScreen() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
+    const { username } = useParams();
     const userProfile = useSelector((store) => store.profile)
     const {loading, error, user, userbooks } = userProfile
 
@@ -23,9 +24,9 @@ function ProfileScreen() {
         if(!userInfo){
             navigate('/login')
         }else{
-            dispatch(userprofile(user.username))
+            dispatch(userprofile(username))
         }
-    }, [dispatch, navigate, userInfo, user])
+    }, [dispatch, navigate, userInfo, username])
 
   return (
     <div>
@@ -39,8 +40,10 @@ function ProfileScreen() {
                     <Card>
                         <div className="rounded-top text-white d-flex flex-row" style={{ backgroundColor: '#000', height: '200px' }}>
                             <div className='ms-4 mt-5 d-flex flex-column' style={{ width: '150px' }}>
-                                <Card.Img src={ user.profile.image }
-                                alt="Generic placeholder image" className="mt-4 mb-2 img-thumbnail" fluid style={{ width: '150px', zIndex: '1' }}/>
+                            {user && user.profile && user.profile.image && 
+                                <Card.Img src={user.profile && user.profile.image} alt="User Image" className="mt-4 mb-2 img-thumbnail" fluid='true' style={{ width: '150px', zIndex: '1' }} />
+                            }
+                
                             </div>
                             <div className="ms-3" style={{ marginTop: '110px' }}>
                                 <MDBTypography tag="h5">{user.username}</MDBTypography>

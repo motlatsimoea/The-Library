@@ -37,14 +37,7 @@ function App() {
                 } 
               />
 
-              <Route 
-                path="/profile/" 
-                element={
-                  <PrivateRoute>
-                        <ProfileScreen />
-                  </PrivateRoute>
-                  } 
-              />
+              <Route path="/profile/:username" element={ <ProfileScreen />} />
 
               <Route path="/profile/edit" element={<ProfileEditScreen />} />
 

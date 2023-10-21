@@ -47,16 +47,15 @@ def user_register(request):
 
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
 def get_user_profile(request, username):
     if request.method == 'GET':
         try:
             user = User.objects.get(username=username)
-            user_profile = Profile.objects.get(user=user)
-            user_books   = Book.objects.filter(user=user)
+            user_books   = Book.objects.filter(upload_by=user)
             
             #Serialize the Data
-            user_profile_serializer = UserProfileSerializer(user_profile, many=False)
+            # user_profile_serializer = UserProfileSerializer(user, many=False)
+            user_profile_serializer = UserProfileSerializer(user)
             user_book_serializer = BookSerializer(user_books, many=True)
             
             combined_data = {

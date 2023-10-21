@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 const initialState = {
-    user: [],
+    user: {},
     userbooks: [],
     loading: false,
     error: null,
@@ -12,17 +12,14 @@ export const userprofile = createAsyncThunk(
     'userprofile/profile',
     async (username, { getState }) => {
         try{
-            const {
-                userLogin: { userInfo },
-            } = getState();
             const config = {
                 headers: {
                     'Content-type': 'application/json',
-                    Authorization: `Bearer ${userInfo.token}`,
                 },
             };
             const { data } = await axios.get(
-                `/api/users/${username}/`,
+                `/api/users/profile/${username}/`,
+                username,
                 config
             );
             return data
