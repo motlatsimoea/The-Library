@@ -12,20 +12,20 @@ The Library is a simple project that allows users to upload and download novels.
 - Notifications
 
 Please note that the project is still in its early stages, and additional functionality will be added as development progresses.
-
-my_project/
+```
+The-Library/
 ├── frontend/
 │   ├── # Frontend project files and directories
 ├── backend/
 │   ├── # Backend project files and directories
 ├── README.md
-
+```
 This repository has two main folders: 'frontend' and 'backend', in addition to this README file.
 
 ### Frontend
 
 The frontend of this library was developed using ReactJS. The folder structure includes:
-
+```tree
 frontend/
 ├── node_modules/
 │   ├── # Node.js modules and dependencies
@@ -54,7 +54,7 @@ frontend/
 ├── .gitignore
 ├── package-lock.json
 ├── package.json
-
+```
 
 - **src**: Contains various 'pages' or components used in the frontend. These components are designed to handle specific functionalities.
 
@@ -71,7 +71,7 @@ The project uses Bootstrap themes, CSS, and HTML templates, which have been modi
 ### Backend
 
 The backend of this project was built using Django and Django Rest Framework. It consists of three apps:
-
+```tree
 backend/
 ├── backend/
 │   ├── # backend application files and directories
@@ -92,7 +92,7 @@ backend/
 ├── db.sqlite3
 ├── manage.py
 ├── requirements.txt
-
+```
 
 - **Books**: Manages models, views, URLs, and serializers related to books/novels.
 
