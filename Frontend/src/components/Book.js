@@ -5,6 +5,12 @@ import { Link } from 'react-router-dom'
 function Book({ book }) {
   return (
     <Card className='my-3 p-3 rounded'>
+
+            <Link to={`/book/${book.id}`}>
+                <Card.Title as="div">
+                    <h2>{book.title}</h2>
+                </Card.Title>
+            </Link>
         <Link to={`/book/${book.id}`}>
             <Card.Img src={book.image}  className="float-end" />
         </Link>
@@ -23,9 +29,7 @@ function Book({ book }) {
             <Card.Text>
                 {book.description}
             </Card.Text>
-        </Card.Body>
-
-      
+        </Card.Body> 
     </Card>
   )
 }

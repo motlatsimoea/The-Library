@@ -28,14 +28,7 @@ function App() {
               <Route
                 path="/" element={<HomeScreen />} />
 
-              <Route 
-                path="/book/:id" 
-                element={
-                  <PrivateRoute>
-                      <BookScreen />
-                  </PrivateRoute>
-                } 
-              />
+              <Route path="/book/:id" element={<BookScreen />} />
 
               <Route path="/profile/:username" element={ <ProfileScreen />} />
 

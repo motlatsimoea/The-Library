@@ -18,14 +18,16 @@ export const fetchBook = createAsyncThunk(
             const config = {
                 headers: {
                     'Content-type': 'application/json',
-                    Authorization: `Bearer ${userInfo.token}`
+                    Authorization: `Bearer ${userInfo.access}`
                 }
             }
             const response = await axios.get(
-                `/api/books/${id}/`,
+                `http://127.0.0.1:8000/api/book/${id}/`,
                 config
                 )
+           //console.log(response.data)
             return response.data
+            
         } catch (error) {
             return rejectWithValue(
                 error.response && error.response.data.detail
@@ -48,7 +50,9 @@ const bookDetailsSlice = createSlice({
             .addCase(fetchBook.fulfilled, (state, action) => {
                 state.loading = false;
                 state.book = action.payload;
+                console.log(state.book);
             })
+
             .addCase(fetchBook.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload
@@ -56,4 +60,4 @@ const bookDetailsSlice = createSlice({
     },
 });
 
-export default bookDetailsSlice.reducer
+export default bookDetailsSlice.reducer;
