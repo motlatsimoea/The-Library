@@ -3,7 +3,7 @@ from django.dispatch import receiver
 from .models import Book, Comment
 from notifications.models import Notification
 
-@receiver(post_save, sender=Comment)
+""" @receiver(post_save, sender=Comment)
 def user_comment(sender, instance, created, **kwargs):
     if created:
         comment = instance
@@ -16,4 +16,4 @@ def user_comment(sender, instance, created, **kwargs):
         for comment in book.comment_set.all():
             if comment.user != sender:
                 notify_participants = Notification(book=book, sender=sender, user=comment.user, notification_type=2)
-                notify_participants.save()
+                notify_participants.save() """

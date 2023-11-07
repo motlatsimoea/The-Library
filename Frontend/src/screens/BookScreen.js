@@ -18,7 +18,15 @@ function BookScreen() {
     dispatch(fetchBook(id))
   }, [dispatch, id]);
 
-//console.log(book_details.book.author)
+  const bookImage = book_details && book_details.book ? book_details.book.image : <p>Loading...</p>;
+  const bookTitle = book_details && book_details.book ? book_details.book.title : <p>Loading...</p>;
+  const bookAuthor = book_details && book_details.book ? book_details.book.author : <p>Loading...</p>;
+  const bookDescription = book_details && book_details.book ? book_details.book.description : <p>Loading...</p>;
+  const username = book_details && book_details.book ? book_details.book.username : <p>Loading...</p>;
+
+  const bookComments = book_details && book_details.comments ? book_details.comments : <p>Loading...</p>;
+
+  console.log(bookComments);
   return (
 
     <div>
@@ -33,30 +41,34 @@ function BookScreen() {
             <>
               <Row>
                 <Col md={3}>
-                    <Image src={book_details.book.image} alt={book_details.book.title} fluid />
+                    <Image src={bookImage} alt={bookTitle} fluid />
                 </Col>
                 <Col md={6}>
                     <ListGroup>
                       <ListGroup.Item>
-                        Title: <h3>{book_details.book.title}</h3>
+                        Title: <h3>{bookTitle}</h3>
                       </ListGroup.Item>
 
                       <ListGroup.Item>
-                        Author: <h4>{book_details.book.author}</h4>
+                        Author: <h4>{bookAuthor}</h4>
                       </ListGroup.Item>
 
                       <ListGroup.Item>
-                        Synopsis: <h4>{book_details.book.description}</h4>
+                        Synopsis: <h4>{bookDescription}</h4>
+                      </ListGroup.Item>
+
+                      <ListGroup.Item>
+                        posted by: <h5 className='d-inline'>{username}</h5>
                       </ListGroup.Item>
                       
                     </ListGroup>
                 </Col>
               </Row>
 
-              {/* <Row className='pt-3'>
+              <Row className='pt-3'>
                 <h3>Comments</h3>
-                <CommentScreen Book_id={id} bookComments={book_details.comments.comments} />
-              </Row> */}
+                <CommentScreen Book_id={id} bookComments={bookComments} />
+              </Row>
             </>
           )
        } 

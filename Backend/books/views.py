@@ -16,6 +16,7 @@ def get_books(request):
 
 
 @api_view(["GET", "POST"])
+@permission_classes([IsAuthenticated])
 def get_book(request, pk):
     book        = get_object_or_404(Book, id=pk)
     comments    = Comment.objects.filter(book=book).order_by('-id')
@@ -24,11 +25,16 @@ def get_book(request, pk):
     comment_serializer = CommentSerializer(comments, many=True)
     
     if request.method == "POST":
-        serializer = CommentSerializer(data=request.data)
+        print('data:', request.data)
+        serializer = CommentSerializer(data=request.data, context={'request': request})
         
         if serializer.is_valid():
+            serializer.validated_data['author'] = request.user
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        if not serializer.is_valid():
+            # Handle the case where the data is not valid
+            print("Data is not valid:", serializer.errors) 
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     

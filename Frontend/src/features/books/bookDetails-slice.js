@@ -21,12 +21,12 @@ export const fetchBook = createAsyncThunk(
                     Authorization: `Bearer ${userInfo.access}`
                 }
             }
-            const response = await axios.get(
+            const { data } = await axios.get(
                 `http://127.0.0.1:8000/api/book/${id}/`,
                 config
                 )
-           //console.log(response.data)
-            return response.data
+            //console.log(data)
+            return data
             
         } catch (error) {
             return rejectWithValue(
@@ -50,7 +50,7 @@ const bookDetailsSlice = createSlice({
             .addCase(fetchBook.fulfilled, (state, action) => {
                 state.loading = false;
                 state.book = action.payload;
-                console.log(state.book);
+                //console.log(state.book);
             })
 
             .addCase(fetchBook.rejected, (state, action) => {
